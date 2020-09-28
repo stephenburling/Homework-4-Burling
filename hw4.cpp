@@ -67,7 +67,12 @@ list_t rotate(list_t input_list, unsigned int n) {
 }
 
 list_t chop(list_t input_list, unsigned int n){
-    if (n > 0) {
+  if (n > 0) {
+    
+      if (!list_isEmpty(input_list)) {
+
+    
+
     input_list = reverse(input_list);
 
     input_list = list_rest(input_list);
@@ -75,9 +80,10 @@ list_t chop(list_t input_list, unsigned int n){
     input_list = reverse(input_list);
 
     
-        return chop(input_list, (n - 1));
-    }
-    else {
-        return input_list;
-    }
+    return chop(input_list, (n - 1));
+      }
+  }
+  else {
+    return input_list;
+  }
 }

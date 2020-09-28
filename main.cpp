@@ -43,7 +43,7 @@ int main() {
     }
 
 
-    testlist = chop(original, 2);
+    testlist = chop(original, 15);
 
     cout << "\nOriginal List: \n" << endl;
     list_print(original);
