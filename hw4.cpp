@@ -52,36 +52,32 @@ static list_t rotateHelper(list_t input_list, list_t saved_list){
 }
 
 list_t rotate(list_t input_list, unsigned int n) {
-
+    if (n > 0) {
     list_t temp_list = list_make();
     
     temp_list = list_make(list_first(input_list), temp_list);
 
     temp_list = rotateHelper(reverse(list_rest(input_list)), temp_list);
 
-    if (n > 1) {
         return rotate(temp_list, (n - 1));
     }
     else {
-        return temp_list;
+        return input_list;
     }
-
-
 }
 
 list_t chop(list_t input_list, unsigned int n){
-
+    if (n > 0) {
     input_list = reverse(input_list);
 
     input_list = list_rest(input_list);
 
     input_list = reverse(input_list);
 
-    if (n > 1) {
+    
         return chop(input_list, (n - 1));
     }
     else {
         return input_list;
     }
-
-    }
+}
