@@ -71,15 +71,12 @@ list_t chop(list_t input_list, unsigned int n){
     
       if (!list_isEmpty(input_list)) {
 
-    
-
     input_list = reverse(input_list);
 
     input_list = list_rest(input_list);
 
     input_list = reverse(input_list);
 
-    
     return chop(input_list, (n - 1));
       }
   }
