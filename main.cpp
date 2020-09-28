@@ -27,35 +27,42 @@ bool notByFour(int i)
 
 int main() {
 
-    list_t original = list_make();
-    list_t rotated = list_make();
-    list_t testlist;
+    list_t first = list_make();
+    list_t second = list_make();
+    list_t test_list = list_make();
 
     
-    const int largest = 7;
+    const int largest = 3;
     const int steps = 4 + largest;
 
     bool answer = true;
 
-    for (int i = largest + 5; i > 0; i--) {
-        original = list_make(i, original);
-        rotated = list_make((i + steps) % largest, rotated);
+    for (int i = largest+1; i > 0; i--) {
+        //cout << i << endl;
+        first = list_make(i, first);
+    }
+
+    for (int j = largest + 5; j > 4; j--) {
+        //cout << j << endl;
+        second = list_make(j,second);
     }
 
 
-    testlist = chop(original, 15);
+    cout << "\nFirst List: \n" << endl;
+    list_print(first);
 
-    cout << "\nOriginal List: \n" << endl;
-    list_print(original);
+    //cout << "\nSecond list: \n" << endl;
+    //list_print(second);
 
-    cout << "\nChopped List: \n" << endl;
-    list_print(testlist);
-    //bool results = ListEqual(testlist, rotated);
+    //test_list = insert_list(first, second, 0);
 
-    //cout << results << endl;
-   // list_print(original);
-    //list_print(rotated);
-    //list_print(testlist);
+    int sumInteger = product(first);
+
+    cout << "Product is equal to: " << sumInteger << endl;
+
+    //cout << "\nTested list: \n" << endl;
+    //list_print(first);
+
     return 0;
 
 }
