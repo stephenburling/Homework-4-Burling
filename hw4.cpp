@@ -87,8 +87,6 @@ static int fibtailHelper(int a, int b, int n) {
     }
 }
 
-static list_t 
-
 int accumulate(list_t l, int (*fn)(int, int), int base)
 {
     if (list_isEmpty(l)) {
