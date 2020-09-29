@@ -87,6 +87,43 @@ static int fibtailHelper(int a, int b, int n) {
     }
 }
 
+static list_t filterEvenHelper(list_t input_list, list_t saved_list) {
+
+    if ((list_first(input_list) % 2) == 0) {
+        saved_list = list_make(list_first(input_list), saved_list);
+    }
+    if (list_isEmpty(list_rest(input_list))) {
+        return saved_list;
+    }
+    else {
+        return filterEvenHelper(list_rest(input_list), saved_list);
+    }
+}
+
+static list_t filterOddHelper(list_t input_list, list_t saved_list) {
+
+    if ((list_first(input_list) % 2) != 0) {
+        saved_list = list_make(list_first(input_list), saved_list);
+    }
+    if (list_isEmpty(list_rest(input_list))) {
+        return saved_list;
+    }
+    else {
+        return filterOddHelper(list_rest(input_list), saved_list);
+    }
+}
+
+static list_t filterHelper(list_t input_list, bool(*fn)(int), list_t saved_list) {
+
+    if (list_isEmpty(input_list)) {
+        return saved_list;
+    }
+    if (fn(list_first(input_list))) {
+        saved_list = list_make(list_first(input_list), saved_list);
+    }
+    return filterHelper(list_rest(input_list), fn, saved_list);
+}
+
 int accumulate(list_t l, int (*fn)(int, int), int base)
 {
     if (list_isEmpty(l)) {
@@ -243,19 +280,6 @@ int fib(int n) {
     return fib(n - 1) + fib(n - 2);
 }
 
-static list_t filterEvenHelper(list_t input_list, list_t saved_list) {
-
-    if ((list_first(input_list) % 2) == 0) {
-        saved_list = list_make(list_first(input_list), saved_list);
-    }
-    if (list_isEmpty(list_rest(input_list))) {
-        return saved_list;
-    }
-    else {
-        return filterEvenHelper(list_rest(input_list), saved_list);
-    }
-}
-
 list_t filter_even(list_t input_list) {
 
     if (list_isEmpty(input_list)) {
@@ -276,19 +300,6 @@ list_t filter_even(list_t input_list) {
     return even_filter_list;
 }
 
-static list_t filterOddHelper(list_t input_list, list_t saved_list) {
-
-    if ((list_first(input_list) % 2) != 0) {
-        saved_list = list_make(list_first(input_list), saved_list);
-    }
-    if (list_isEmpty(list_rest(input_list))) {
-        return saved_list;
-    }
-    else {
-        return filterOddHelper(list_rest(input_list), saved_list);
-    }
-}
-
 list_t filter_odd(list_t input_list) {
 
     cout << "filter_odd() input: " << endl;
@@ -307,4 +318,12 @@ list_t filter_odd(list_t input_list) {
     list_print(odd_filter_list);
 
     return odd_filter_list;
+}
+
+list_t filter(list_t input_list, bool (*fn)(int)) {
+
+    list_t temp_list = list_make();
+
+    return reverse(filterHelper(input_list, fn, temp_list));
+
 }
