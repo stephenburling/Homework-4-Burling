@@ -237,19 +237,19 @@ int sum(list_t input_list) {
 }
 
 int fib_tail(int n) {
+    cout << "Tested integer for fib_tail(): " << n << endl;
     int a = 0;
     int b = 1;
     return fibtailHelper(n, a, b);
 }
 
 int fib(int n) {
-
+    cout << "Tested integer for fib(): " << n << endl;
     if (n == 0) {
         return 0;
-    }
-    if (n == 1) {
+    }else if (n == 1) {
         return 1;
     }
-    return fib(n - 1) + fib(n - 2);
+    return fib((n - 1)) + fib((n - 2));
 
 }
