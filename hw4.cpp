@@ -52,6 +52,11 @@ static list_t reverseHelper(list_t input_list, list_t saved_list) {
 
 list_t reverse(list_t input_list) {
 
+    if (list_isEmpty(input_list)) {
+
+        return input_list;
+
+    }
     list_t temp_list = list_make();
 
     temp_list = reverseHelper(input_list, temp_list);
@@ -213,12 +218,9 @@ int product(list_t input_list) {
 }
 
 static int sumHelper(int sum_a, int sum_b) {
-
     return (sum_a + sum_b);
 }
 
 int sum(list_t input_list) {
-
     return accumulate(input_list, &sumHelper, 0);
-
 }
