@@ -245,7 +245,7 @@ int fib(int n) {
 
 static list_t filterEvenHelper(list_t input_list, list_t saved_list) {
 
-    if ((list_first(input_list) % 2) != 0) {
+    if ((list_first(input_list) % 2) == 0) {
         saved_list = list_make(list_first(input_list), saved_list);
     }
     if (list_isEmpty(list_rest(input_list))) {
@@ -278,7 +278,7 @@ list_t filter_even(list_t input_list) {
 
 static list_t filterOddHelper(list_t input_list, list_t saved_list) {
 
-    if ((list_first(input_list) % 2) == 0) {
+    if ((list_first(input_list) % 2) != 0) {
         saved_list = list_make(list_first(input_list), saved_list);
     }
     if (list_isEmpty(list_rest(input_list))) {
