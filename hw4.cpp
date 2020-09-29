@@ -78,6 +78,17 @@ static int sumHelper(int sum_a, int sum_b) {
     return (sum_a + sum_b);
 }
 
+static int fibtailHelper(int n, int a, int b) {
+
+    if (n == 0) {
+        return b;
+    }
+    if (n == 1) {
+        return a;
+    }
+    return fibtailHelper((n - 1), b, (a + b));
+}
+
 int accumulate(list_t l, int (*fn)(int, int), int base)
 {
     if (list_isEmpty(l)) {
@@ -87,7 +98,6 @@ int accumulate(list_t l, int (*fn)(int, int), int base)
         return accumulate(list_rest(l), fn, fn(base, list_first(l)));
     }
 }
-
 
 list_t reverse(list_t input_list) {
 
@@ -102,7 +112,6 @@ list_t reverse(list_t input_list) {
 
     return temp_list;
 }
-
 
 list_t rotate(list_t input_list, unsigned int n) {
     if (n > 0) {
@@ -142,7 +151,6 @@ list_t chop(list_t input_list, unsigned int n){
     return input_list;
   }
 }
-
 
 list_t append(list_t first_list, list_t second_list) {
 
@@ -218,16 +226,30 @@ list_t insert_list(list_t first_list, list_t second_list, unsigned int n) {
     return final_list;
 }
 
-
 int product(list_t input_list) {
 
     return accumulate(input_list, &productHelper, 1);
 
 }
 
-
 int sum(list_t input_list) {
     return accumulate(input_list, &sumHelper, 0);
 }
 
+int fib_tail(int n) {
+    int a = 0;
+    int b = 1;
+    return fibtailHelper(n, a, b);
+}
 
+int fib(int n) {
+
+    if (n == 0) {
+        return 0;
+    }
+    if (n == 1) {
+        return 1;
+    }
+    return fib(n - 1) + fib(n - 2);
+
+}
