@@ -201,7 +201,61 @@ chop:
     else
       return input_lsit
 append
-    
+    if first list is empty
+      return second list
+    if second list is empty
+      return first list
+    make empty list called return_list
+    set return_list to reverseHelper with reversed second list and return_list
+    set return_list to reverseHelper with reversed first list and return_list
+    return return_list
+insert_list
+    if first list is empty
+      return second list
+    if second list is empty
+      return first list
+    create empty list called final_list
+    take size of first list from list_size
+    take size of second list from list_size
+    if the given n is greater than or equal to the size of the first list
+      append the first list onto the second list
+      return that list
+    else if the given n is less than or equal to zero
+      append the first list onto the second list
+      return that list
+    subtract given n from size of first list
+    reverse first and second list
+    create new list equal to splitLIst
+    set the new list size equal to size of new list
+    insert first list to a certain node into the final list
+    insert entire second list final list
+    insert entire split list into final list
+    return final list
+product
+    return accumulate with input list, productHelper, and 1
+sum
+    return accumulate with input list, sumHelper, and 0
+fib_tail
+    return fibtailHelper with 0,1, and n
+fib
+    if n is equal to 0
+      return 0
+    else if n is equal to 1
+      return 1
+    return sum of fib(n-1) and fib(n-2)
+filter_even
+    if input list is empty, return it
+    create empty list called even_filter_list
+    set even_filter_list to filterEvenHelper with reversed input list and even_filter list
+    return even_filter_list
+filter_odd
+    if input list is empty, return it
+    create empty list called odd_filter_list
+    set odd_filter_list to filterOddHelper with reversed input list and odd_filter list
+    return odd_filter_list
+filter
+    create empty list called temp_list
+    return the reversed list from filterHelper with the input list, given function, and temp_list
 */
 int accumulate(list_t l, int (*fn)(int, int), int base)
 {
@@ -298,7 +352,6 @@ list_t insert_list(list_t first_list, list_t second_list, unsigned int n) {
     }
     list_t final_list = list_make();
     int size_first = list_size(first_list, 0);
-
     int size_second = list_size(second_list, 0);
     if (n >= size_first) {
 
@@ -317,7 +370,6 @@ list_t insert_list(list_t first_list, list_t second_list, unsigned int n) {
 
     first_list = reverse(first_list);
     second_list = reverse(second_list);
-
     
     list_t new_list = splitList(first_list, size_first);
 
@@ -329,14 +381,11 @@ list_t insert_list(list_t first_list, list_t second_list, unsigned int n) {
 
     final_list = insertlistHelper(new_list, final_list, new_list_size);
 
-
     return final_list;
 }
 
 int product(list_t input_list) {
-
     return accumulate(input_list, &productHelper, 1);
-
 }
 
 int sum(list_t input_list) {
@@ -364,23 +413,14 @@ list_t filter_even(list_t input_list) {
         return input_list;
     }
 
-    cout << "filter_even() input: " << endl;
-
-    list_print(input_list);
-
     list_t even_filter_list = list_make();
 
     even_filter_list = filterEvenHelper(reverse(input_list), even_filter_list);
-
-    cout << "list after filterEvenHelper: " << endl;
-    list_print(even_filter_list);
 
     return even_filter_list;
 }
 
 list_t filter_odd(list_t input_list) {
-
-    cout << "filter_odd() input: " << endl;
 
     if (list_isEmpty(input_list)) {
         return input_list;
@@ -391,9 +431,6 @@ list_t filter_odd(list_t input_list) {
     list_t odd_filter_list = list_make();
 
     odd_filter_list = filterOddHelper(reverse(input_list), odd_filter_list);
-
-    cout << "list after filterOddHelper: " << endl;
-    list_print(odd_filter_list);
 
     return odd_filter_list;
 }
