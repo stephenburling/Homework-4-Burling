@@ -1,3 +1,9 @@
+#include <iostream>
+#include "recursive.h"
+#include "hw4.h"
+
+using std::cout;
+using std::endl;
 
 /*
 Pseudocode
@@ -49,15 +55,13 @@ filterOddHelper
     else
       recursively call filterEvenHelper with next node and saved_list
 filterHelper
-    if
+    if boolean of function with first node in input_list is true
+      push first node of input_list into saved_list
+    if next node is empty in input_list
+      return saved_list
+    else
+      recursively call filterHelper with next node, bool function, and saved_list
 */
-#include <iostream>
-#include "recursive.h"
-#include "hw4.h"
-
-using std::cout;
-using std::endl;
-
 static int list_size(list_t input_list, int size) {
 
     size = size + 1;
@@ -166,7 +170,14 @@ static list_t filterHelper(list_t input_list, bool(*fn)(int), list_t saved_list)
     }
 }
 
+/*
+accumulate:
+    if current list is empty
+      return base
+    else
+      recursively call accumulate with the rest of l, fn, and fn(base, first node of l)
 
+*/
 int accumulate(list_t l, int (*fn)(int, int), int base)
 {
     if (list_isEmpty(l)) {
