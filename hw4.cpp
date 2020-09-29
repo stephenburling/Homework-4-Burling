@@ -1,3 +1,4 @@
+
 /*
 Pseudocode
                 ------HELPERS-------
@@ -18,8 +19,37 @@ reverseHelper:
       return saved_list
     else
       recursively call reverseHelper with next node and saved_list
-rotateHelper:
-    
+insertlistHelper:
+    push the first node of input_list into saved_list
+    if n minus one is greater than zero
+      recursively call insertlistHelper with the next
+    else
+      return saved_list
+productHelper:
+    return a*b
+sumHelper:
+    return a+b
+fibtailHelper
+    if int n is greater than zero
+      recursively call fibtailHelper with b, sum of a and b, and decremented n
+    else
+      return a
+filterEvenHelper
+    if the first node of the input list is even
+      push the first node of input_list into saved_list
+    if next node is empty in input_list
+      return saved_list
+    else
+      recursively call filterEvenHelper with next node and saved_list
+filterOddHelper
+    if the first node of the input list is odd
+      push the first node of input_list into saved_list
+    if next node is empty in input_list
+      return saved_list
+    else
+      recursively call filterEvenHelper with next node and saved_list
+filterHelper
+    if
 */
 #include <iostream>
 #include "recursive.h"
@@ -62,7 +92,6 @@ static list_t reverseHelper(list_t input_list, list_t saved_list) {
         return reverseHelper(list_rest(input_list), saved_list);
     }
 }
-
 
 static list_t insertlistHelper(list_t input_list, list_t saved_list, unsigned int n) {
 
