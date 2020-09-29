@@ -1,3 +1,26 @@
+/*
+Pseudocode
+                ------HELPERS-------
+list_size:
+    increments size by one
+    if the next node in list is empty:
+      return size
+    else
+      recursively call list_size with the next node and same size
+splitList:
+    if the int split point is greater than zero
+      recursively call splitList with the next node and decremented splitPoint
+    else
+      return current input_list
+reverseHelper:
+    push the first node of input_list into saved_list
+    if next node is empty in input_list
+      return saved_list
+    else
+      recursively call reverseHelper with next node and saved_list
+rotateHelper:
+    
+*/
 #include <iostream>
 #include "recursive.h"
 #include "hw4.h"
@@ -40,18 +63,6 @@ static list_t reverseHelper(list_t input_list, list_t saved_list) {
     }
 }
 
-static list_t rotateHelper(list_t input_list, list_t saved_list){
-
-    saved_list = list_make(list_first(input_list), saved_list);
-
-    if (list_isEmpty(list_rest(input_list))) {
-        return saved_list;
-    }
-    else {
-        return rotateHelper(list_rest(input_list), saved_list);
-    }
-
-}
 
 static list_t insertlistHelper(list_t input_list, list_t saved_list, unsigned int n) {
 
@@ -124,6 +135,7 @@ static list_t filterHelper(list_t input_list, bool(*fn)(int), list_t saved_list)
     return filterHelper(list_rest(input_list), fn, saved_list);
 }
 
+
 int accumulate(list_t l, int (*fn)(int, int), int base)
 {
     if (list_isEmpty(l)) {
@@ -155,7 +167,7 @@ list_t rotate(list_t input_list, unsigned int n) {
     
     temp_list = list_make(list_first(input_list), temp_list);
     
-    temp_list = rotateHelper(reverse(list_rest(input_list)), temp_list);
+    temp_list = reverseHelper(reverse(list_rest(input_list)), temp_list);
 
     return rotate(temp_list, (n - 1));
 
