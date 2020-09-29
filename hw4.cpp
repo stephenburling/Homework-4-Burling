@@ -258,6 +258,9 @@ static list_t filterEvenHelper(list_t input_list, list_t saved_list) {
 
 list_t filter_even(list_t input_list) {
 
+    if (list_isEmpty(input_list)) {
+        return input_list;
+    }
 
     cout << "filter_even() input: " << endl;
 
@@ -286,6 +289,10 @@ static list_t filterOddHelper(list_t input_list, list_t saved_list) {
 list_t filter_odd(list_t input_list) {
 
     cout << "filter_odd() input: " << endl;
+
+    if (list_isEmpty(input_list)) {
+        return input_list;
+    }
 
     list_print(input_list);
 
