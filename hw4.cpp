@@ -28,16 +28,6 @@ static list_t splitList(list_t input_list, int split_point) {
     }
 }
 
-int accumulate(list_t l, int (*fn)(int, int), int base)
-{
-    if (list_isEmpty(l)) {
-        return base;
-    }
-    else {
-        return accumulate(list_rest(l), fn, fn(base, list_first(l)));
-    }
-}
-
 static list_t reverseHelper(list_t input_list, list_t saved_list) {
 
     saved_list = list_make(list_first(input_list), saved_list);
@@ -49,6 +39,55 @@ static list_t reverseHelper(list_t input_list, list_t saved_list) {
         return reverseHelper(list_rest(input_list), saved_list);
     }
 }
+
+static list_t rotateHelper(list_t input_list, list_t saved_list){
+
+    saved_list = list_make(list_first(input_list), saved_list);
+
+    if (list_isEmpty(list_rest(input_list))) {
+        return saved_list;
+    }
+    else {
+        return rotateHelper(list_rest(input_list), saved_list);
+    }
+
+}
+
+static list_t insertlistHelper(list_t input_list, list_t saved_list, unsigned int n) {
+
+    saved_list = list_make(list_first(input_list), saved_list);
+
+    if ((n-1) > 0) {
+
+        return insertlistHelper(list_rest(input_list), saved_list, (n - 1));
+
+    }
+    else {
+        return saved_list;
+    }
+
+}
+
+static int productHelper(int base_a, int base_b) {
+
+    return (base_a * base_b);
+
+}
+
+static int sumHelper(int sum_a, int sum_b) {
+    return (sum_a + sum_b);
+}
+
+int accumulate(list_t l, int (*fn)(int, int), int base)
+{
+    if (list_isEmpty(l)) {
+        return base;
+    }
+    else {
+        return accumulate(list_rest(l), fn, fn(base, list_first(l)));
+    }
+}
+
 
 list_t reverse(list_t input_list) {
 
@@ -64,18 +103,6 @@ list_t reverse(list_t input_list) {
     return temp_list;
 }
 
-static list_t rotateHelper(list_t input_list, list_t saved_list){
-
-    saved_list = list_make(list_first(input_list), saved_list);
-
-    if (list_isEmpty(list_rest(input_list))) {
-        return saved_list;
-    }
-    else {
-        return rotateHelper(list_rest(input_list), saved_list);
-    }
-
-}
 
 list_t rotate(list_t input_list, unsigned int n) {
     if (n > 0) {
@@ -116,20 +143,6 @@ list_t chop(list_t input_list, unsigned int n){
   }
 }
 
-static list_t insertlistHelper(list_t input_list, list_t saved_list, unsigned int n) {
-
-    saved_list = list_make(list_first(input_list), saved_list);
-
-    if ((n-1) > 0) {
-
-        return insertlistHelper(list_rest(input_list), saved_list, (n - 1));
-
-    }
-    else {
-        return saved_list;
-    }
-
-}
 
 list_t append(list_t first_list, list_t second_list) {
 
@@ -205,11 +218,6 @@ list_t insert_list(list_t first_list, list_t second_list, unsigned int n) {
     return final_list;
 }
 
-static int productHelper(int base_a, int base_b) {
-
-    return (base_a * base_b);
-
-}
 
 int product(list_t input_list) {
 
@@ -217,10 +225,9 @@ int product(list_t input_list) {
 
 }
 
-static int sumHelper(int sum_a, int sum_b) {
-    return (sum_a + sum_b);
-}
 
 int sum(list_t input_list) {
     return accumulate(input_list, &sumHelper, 0);
 }
+
+
