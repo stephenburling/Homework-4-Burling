@@ -176,7 +176,32 @@ accumulate:
       return base
     else
       recursively call accumulate with the rest of l, fn, and fn(base, first node of l)
-
+reverse
+    if input_list is empty, return it back
+    create empty list called reversed_list
+    set reverse_list equal to returned list from reverseHelper
+    return reversed_list
+rotate
+    if n is greater than 0
+      make empty list called temp_list
+      set temp_list to  the first node in input_list
+      set temp_list to reverseHelper with input_list minus the first node and reversed, and temp_list
+      recursively call rotate with temp_list and n-1
+    else
+      return input_list
+chop:
+    if n is greater than zero
+      if the input list is not empty
+        reverse the input list
+        take off the first node in reversed list
+        reverse new, shorter list back 
+        recursively call chop with input_list and n-1
+      else
+        return input_list
+    else
+      return input_lsit
+append
+    
 */
 int accumulate(list_t l, int (*fn)(int, int), int base)
 {
@@ -221,7 +246,6 @@ list_t rotate(list_t input_list, unsigned int n) {
 
 list_t chop(list_t input_list, unsigned int n){
   if (n > 0) {
-    
     if (!list_isEmpty(input_list)) {
 
     input_list = reverse(input_list);
@@ -252,9 +276,9 @@ list_t append(list_t first_list, list_t second_list) {
 
     list_t return_list = list_make();
 
-    return_list = insertlistHelper(reverse(second_list), return_list, list_size(second_list,0));
+    return_list = reverseHelper(reverse(second_list), return_list);
 
-    return_list = insertlistHelper(reverse(first_list), return_list, list_size(first_list, 0));
+    return_list = reverseHelper(reverse(first_list), return_list);
 
     return return_list;
 
