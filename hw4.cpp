@@ -267,7 +267,7 @@ list_t filter_even(list_t input_list) {
 
     even_filter_list = filterEvenHelper(reverse(input_list), even_filter_list);
 
-    return reverse(even_filter_list);
+    return even_filter_list;
 }
 
 static list_t filterOddHelper(list_t input_list, list_t saved_list) {
@@ -293,5 +293,5 @@ list_t filter_odd(list_t input_list) {
 
     odd_filter_list = filterOddHelper(reverse(input_list), odd_filter_list);
 
-    return reverse(odd_filter_list);
+    return odd_filter_list;
 }
