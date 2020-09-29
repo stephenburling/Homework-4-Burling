@@ -142,6 +142,15 @@ list_t append(list_t first_list, list_t second_list) {
 
 list_t insert_list(list_t first_list, list_t second_list, unsigned int n) {
 
+    cout << "\nfirst_list: " << endl;
+
+    list_print(first_list);
+    cout << "\nsecond_list: " << endl;
+    list_print(second_list);
+
+    cout << "\npassed int: " << n << endl;
+
+
     list_t final_list = list_make();
     int size_first = list_size(first_list, 0);
 
