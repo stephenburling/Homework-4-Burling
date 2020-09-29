@@ -152,10 +152,7 @@ list_t insert_list(list_t first_list, list_t second_list, unsigned int n) {
     cout << "\npassed int: " << n << endl;
 
 
-    list_t final_list = list_make();
-    int size_first = list_size(first_list, 0);
-
-    int size_second = list_size(second_list, 0);
+    
     if (list_isEmpty(first_list)) {
 
         return second_list;
@@ -166,7 +163,10 @@ list_t insert_list(list_t first_list, list_t second_list, unsigned int n) {
         return first_list;
 
     }
+    list_t final_list = list_make();
+    int size_first = list_size(first_list, 0);
 
+    int size_second = list_size(second_list, 0);
     if (n >= size_first) {
 
         final_list = append(first_list, second_list);
