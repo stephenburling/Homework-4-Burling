@@ -155,13 +155,15 @@ static list_t filterOddHelper(list_t input_list, list_t saved_list) {
 
 static list_t filterHelper(list_t input_list, bool(*fn)(int), list_t saved_list) {
 
-    if (list_isEmpty(input_list)) {
-        return saved_list;
-    }
     if (fn(list_first(input_list))) {
         saved_list = list_make(list_first(input_list), saved_list);
     }
-    return filterHelper(list_rest(input_list), fn, saved_list);
+    if (list_isEmpty(list_rest(input_list))) {
+        return saved_list;
+    }
+    else {
+        return filterHelper(list_rest(input_list), fn, saved_list);
+    }
 }
 
 
