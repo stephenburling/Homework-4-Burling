@@ -270,6 +270,9 @@ list_t filter_even(list_t input_list) {
 
     even_filter_list = filterEvenHelper(reverse(input_list), even_filter_list);
 
+    cout << "list after filterEvenHelper: " << endl;
+    list_print(even_filter_list);
+
     return even_filter_list;
 }
 
@@ -299,6 +302,9 @@ list_t filter_odd(list_t input_list) {
     list_t odd_filter_list = list_make();
 
     odd_filter_list = filterOddHelper(reverse(input_list), odd_filter_list);
+
+    cout << "list after filterOddHelper: " << endl;
+    list_print(odd_filter_list);
 
     return odd_filter_list;
 }
