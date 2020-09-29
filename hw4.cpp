@@ -259,6 +259,10 @@ static list_t filterEvenHelper(list_t input_list, list_t saved_list) {
 
 list_t filter_even(list_t input_list) {
 
+    cout << "filter_even() input: " << endl;
+
+    list_print(input_list);
+
     list_t even_filter_list = list_make();
 
     even_filter_list = filterEvenHelper(reverse(input_list), even_filter_list);
@@ -280,6 +284,10 @@ static list_t filterOddHelper(list_t input_list, list_t saved_list) {
 }
 
 list_t filter_odd(list_t input_list) {
+
+    cout << "filter_odd() input: " << endl;
+
+    list_print(input_list);
 
     list_t odd_filter_list = list_make();
 
