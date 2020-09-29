@@ -78,15 +78,13 @@ static int sumHelper(int sum_a, int sum_b) {
     return (sum_a + sum_b);
 }
 
-static int fibtailHelper(int n, int a, int b) {
+static int fibtailHelper(int a, int b, int n) {
 
-    if (n == 0) {
-        return b;
-    }
-    if (n == 1) {
+    if (n > 0) {
+        return fibtailHelper(b, (a+b), (n-1));
+    }else {
         return a;
     }
-    return fibtailHelper((n - 1), b, (a + b));
 }
 
 int accumulate(list_t l, int (*fn)(int, int), int base)
@@ -240,17 +238,21 @@ int fib_tail(int n) {
     cout << "Tested integer for fib_tail(): " << n << endl;
     int a = 0;
     int b = 1;
-    return fibtailHelper(n, a, b);
+    return fibtailHelper(a,b,n);
 }
 
 int fib(int n) {
     cout << "Tested integer for fib(): " << n << endl;
 
     if (n == 0) {
-        return 0;
-    }else if (n == 1) {
-        return 1;
-    }
-    return (fib((n - 1)) + fib((n - 2)));
 
+        return 0;
+
+    }else if (n == 1) {
+
+        return 1;
+
+    }
+
+    return fib(n - 1) + fib(n - 2);
 }
