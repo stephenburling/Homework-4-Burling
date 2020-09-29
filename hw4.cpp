@@ -254,7 +254,6 @@ static list_t filterEvenHelper(list_t input_list, list_t saved_list) {
     else {
         return filterEvenHelper(list_rest(input_list), saved_list);
     }
-
 }
 
 list_t filter_even(list_t input_list) {
