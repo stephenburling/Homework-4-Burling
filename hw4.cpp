@@ -78,7 +78,6 @@ static int sumHelper(int sum_a, int sum_b) {
     return (sum_a + sum_b);
 }
 
-
 static int fibtailHelper(int a, int b, int n) {
 
     if (n > 0) {
@@ -87,15 +86,9 @@ static int fibtailHelper(int a, int b, int n) {
         return a;
     }
 }
-/*
-static int fib_tail_helper(int a, int b, int n) {
-    //cout << "a: " << a <<  " b: " << b << "   n: " << n << endl;
-    if (n > 0)
-        return fib_tail_helper(b, a + b, n - 1);
-    else
-        return a;
-}
-*/
+
+static list_t 
+
 int accumulate(list_t l, int (*fn)(int, int), int base)
 {
     if (list_isEmpty(l)) {
@@ -113,11 +106,11 @@ list_t reverse(list_t input_list) {
         return input_list;
 
     }
-    list_t temp_list = list_make();
+    list_t reversed_list = list_make();
 
-    temp_list = reverseHelper(input_list, temp_list);
+    reversed_list = reverseHelper(input_list, reversed_list);
 
-    return temp_list;
+    return reversed_list;
 }
 
 list_t rotate(list_t input_list, unsigned int n) {
@@ -126,7 +119,7 @@ list_t rotate(list_t input_list, unsigned int n) {
     list_t temp_list = list_make();
     
     temp_list = list_make(list_first(input_list), temp_list);
-
+    
     temp_list = rotateHelper(reverse(list_rest(input_list)), temp_list);
 
     return rotate(temp_list, (n - 1));
@@ -162,17 +155,11 @@ list_t chop(list_t input_list, unsigned int n){
 list_t append(list_t first_list, list_t second_list) {
 
     if (list_isEmpty(first_list)) {
-
         return second_list;
-
     }
     else if (list_isEmpty(second_list)) {
-
         return first_list;
-
     }
-
-    cout << "\nAccessing append(): " << endl;
 
     list_t return_list = list_make();
 
@@ -243,10 +230,10 @@ int sum(list_t input_list) {
     return accumulate(input_list, &sumHelper, 0);
 }
 
-
 int fib_tail(int n) {
     return fibtailHelper(0, 1, n);
 }
+
 int fib(int n) {
 
     if (n == 0) {
@@ -256,4 +243,49 @@ int fib(int n) {
         return 1;
     }
     return fib(n - 1) + fib(n - 2);
+}
+
+static list_t filterEvenHelper(list_t input_list, list_t saved_list) {
+
+    if ((list_first(input_list) % 2) != 0) {
+        saved_list = list_make(list_first(input_list), saved_list);
+    }
+    if (list_isEmpty(list_rest(input_list))) {
+        return saved_list;
+    }
+    else {
+        return filterEvenHelper(list_rest(input_list), saved_list);
+    }
+
+}
+
+list_t filter_even(list_t input_list) {
+
+    list_t even_filter_list = list_make();
+
+    even_filter_list = filterEvenHelper(reverse(input_list), even_filter_list);
+
+    return reverse(even_filter_list);
+}
+
+static list_t filterOddHelper(list_t input_list, list_t saved_list) {
+
+    if ((list_first(input_list) % 2) == 0) {
+        saved_list = list_make(list_first(input_list), saved_list);
+    }
+    if (list_isEmpty(list_rest(input_list))) {
+        return saved_list;
+    }
+    else {
+        return filterOddHelper(list_rest(input_list), saved_list);
+    }
+}
+
+list_t filter_odd(list_t input_list) {
+
+    list_t odd_filter_list = list_make();
+
+    odd_filter_list = filterOddHelper(reverse(input_list), odd_filter_list);
+
+    return reverse(odd_filter_list);
 }
