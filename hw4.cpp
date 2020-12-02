@@ -426,8 +426,6 @@ list_t filter_odd(list_t input_list) {
         return input_list;
     }
 
-    list_print(input_list);
-
     list_t odd_filter_list = list_make();
 
     odd_filter_list = filterOddHelper(reverse(input_list), odd_filter_list);

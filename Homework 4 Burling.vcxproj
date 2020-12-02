@@ -124,7 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="hw4.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="hw7.cpp" />
     <ClCompile Include="recursive.cpp" />
   </ItemGroup>
   <ItemGroup>
